@@ -1,42 +1,66 @@
 import { Reveal, SectionHeader } from "./Section";
 import { ExternalLink, Github } from "lucide-react";
+import internshipReadinessImg from "@/assets/projects/internshipreadiness.png";
+import nardisBeautyImg from "@/assets/projects/nardisbeauty.png";
+import financeManagementImg from "@/assets/projects/financemanagement.png";
+import pcicDashboardImg from "@/assets/projects/PCICdashboard.png";
+import tebaMartImg from "@/assets/projects/tebamart.png";
+import digitalClearanceImg from "@/assets/projects/digitalclearance.png";
 
 const projects = [
   {
-    title: "DevConnect",
+    title: "Internship Readiness Assessment and Recommendation Platform",
     description:
-      "A full-stack platform for developers to connect, share work, and collaborate in real time with chat and project feeds.",
-    stack: ["React", "Node.js", "PostgreSQL", "WebSockets"],
+      "A platform that helps students prepare for internships with structured resources and guided practice.",
+    stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
     gradient: "from-violet-500/30 via-indigo-500/20 to-transparent",
-    live: "#",
-    code: "#",
+    live: "https://internship-readiness-platform.vercel.app/",
+    image: internshipReadinessImg,
   },
   {
-    title: "TaskFlow",
+    title: "TebaMart",
     description:
-      "Minimalist project management app focused on clarity and speed. Drag, drop, ship — without ceremony.",
-    stack: ["React", "TypeScript", "Express", "MongoDB"],
+      "Full-featured e-commerce platform with catalog, cart, and checkout workflows.",
+    stack: ["React", "Node.js", "Express", "MongoDB"],
     gradient: "from-emerald-500/25 via-teal-500/15 to-transparent",
-    live: "#",
-    code: "#",
+    status: "Not deployed",
+    image: tebaMartImg,
   },
   {
-    title: "ShopAPI",
+    title: "PCIC Management System",
     description:
-      "A production-grade REST API for e-commerce: auth, products, carts, orders — clean architecture from the ground up.",
-    stack: ["Node.js", "Express", "PostgreSQL", "JWT Auth"],
+      "Management system for PCIC operations and workflows with a production-ready deployment.",
+    stack: ["React", "Node.js", "PostgreSQL", "Role-based Access"],
     gradient: "from-fuchsia-500/25 via-rose-500/15 to-transparent",
-    live: "#",
-    code: "#",
+    live: "https://pcic.tech",
+    image: pcicDashboardImg,
   },
   {
-    title: "Portfolio v1",
+    title: "Digital Clearance System",
     description:
-      "My first personal site. Hand-built with vanilla web fundamentals — the starting point of this whole journey.",
-    stack: ["HTML", "CSS", "JavaScript", "Responsive"],
+      "A Java-based digital clearance system that streamlines approval and clearance workflows.",
+    stack: ["Java", "Spring", "MySQL", "REST API"],
     gradient: "from-amber-500/25 via-orange-500/15 to-transparent",
-    live: "#",
-    code: "#",
+    status: "Not deployed",
+    image: digitalClearanceImg,
+  },
+  {
+    title: "Personal Finance Management",
+    description:
+      "Personal finance tracker for budgeting, income, and expenses with a clean UX.",
+    stack: ["React", "TypeScript", "Netlify", "Charting"],
+    gradient: "from-sky-500/25 via-cyan-500/15 to-transparent",
+    live: "https://financemanaget.netlify.app/",
+    image: financeManagementImg,
+  },
+  {
+    title: "Nardis Beauty Shop",
+    description:
+      "Beauty shop storefront with product highlights and brand-focused presentation.",
+    stack: ["React", "Tailwind CSS", "Netlify"],
+    gradient: "from-rose-500/25 via-pink-500/15 to-transparent",
+    live: "https://nardos-beauty.netlify.app/",
+    image: nardisBeautyImg,
   },
 ];
 
@@ -56,20 +80,28 @@ export function Projects() {
         {projects.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.1}>
             <article className="card-elevated group h-full overflow-hidden transition-transform duration-300 hover:-translate-y-1">
-              <div
-                className={`relative aspect-video w-full overflow-hidden bg-linear-to-br ${p.gradient}`}
-              >
+              {p.image ? (
                 <div
-                  className="absolute inset-0 grid-bg opacity-40"
-                  aria-hidden
-                />
-                <div className="absolute inset-0 flex items-end justify-start p-6">
-                  <span className="font-mono text-xs uppercase tracking-widest text-foreground/60">
-                    /{p.title.toLowerCase()}
-                  </span>
+                  className={`relative aspect-video w-full overflow-hidden bg-linear-to-br ${p.gradient}`}
+                >
+                  <img
+                    src={p.image}
+                    alt={`${p.title} preview`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    className="absolute inset-0 grid-bg opacity-40"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-0 flex items-end justify-start p-6">
+                    <span className="font-mono text-xs uppercase tracking-widest text-foreground/80">
+                      /{p.title.toLowerCase()}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-t from-card via-card/30 to-transparent" />
                 </div>
-                <div className="absolute inset-0 bg-linear-to-t from-card via-card/20 to-transparent" />
-              </div>
+              ) : null}
               <div className="p-6">
                 <h3 className="font-display text-lg font-semibold">
                   {p.title}
@@ -88,22 +120,31 @@ export function Projects() {
                   ))}
                 </div>
                 <div className="mt-5 flex items-center gap-2">
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    Live Demo <ExternalLink className="h-3 w-3" />
-                  </a>
-                  <a
-                    href={p.code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Github className="h-3 w-3" /> GitHub
-                  </a>
+                  {p.live ? (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      Live Demo <ExternalLink className="h-3 w-3" />
+                    </a>
+                  ) : null}
+                  {p.code ? (
+                    <a
+                      href={p.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      <Github className="h-3 w-3" /> GitHub
+                    </a>
+                  ) : null}
+                  {!p.live && !p.code && p.status ? (
+                    <span className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                      {p.status}
+                    </span>
+                  ) : null}
                 </div>
               </div>
             </article>
